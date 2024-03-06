@@ -5,7 +5,6 @@ export type IngredientProps = {
     name: string
     image: string
     selected?: boolean
-
 }
 
 export function Ingredient({name, image, selected=false, ...rest}: IngredientProps & PressableProps){
