@@ -9,11 +9,20 @@ export const styles = StyleSheet.create({
     },
     title:{
         fontSize: theme.fonts.size.heading.xl,
+        fontFamily: theme.fonts.family.bold,
         lineHeight: 44,
-        marginTop: 42,
-        fontFamily: theme.fonts.family.bold
+        marginTop: 42
+       
     },
     subtitle: {
         fontFamily: theme.fonts.family.regular
     },
+    message: {
+        fontSize: theme.fonts.size.body.md,
+        fontFamily: theme.fonts.family.regular,
+        marginTop: 12,
+        marginBottom: 38,
+
+        color: theme.colors.gray_400
+    }
 });
