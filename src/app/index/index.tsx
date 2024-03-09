@@ -1,14 +1,16 @@
-import { View, Text, ScrollView, Alert} from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
+import { Router, router } from "expo-router";
 
 import { styles } from "./styles"
 import { Selected } from "@/components/selected";
-import {  useState } from "react";
+import { useState } from "react";
 import { Ingredient } from "@/components/Ingredient";
+import CustomAlert from "@/components/Alert";
 
 export default function Index() {
 
     const [selected, setSelected] = useState<string[]>([]);
-
+    const [alertVisible, setAlertVisible] = useState(false);
 
     //Filtrando os objetos selecionados
     function handleToggleSelected(value: string) {
@@ -19,14 +21,25 @@ export default function Index() {
         console.log(selected)
     }
 
-    function handlerClearSelected(){
-        debugger
-        Alert.alert("Limpar", "Deseja limpar tudo?", [
-            {text: "Não", style: "cancel"},
-            {text: "Sim", onPress: () => setSelected([]) },
-        ])
-        
-    }
+     // Função para limpar a seleção
+  function handlerClearSelected() {
+    setAlertVisible(true);
+  }
+
+  // Função para confirmar limpar a seleção
+  function handleConfirmClearSelected() {
+    setSelected([]);
+    setAlertVisible(false);
+  }
+
+  // Função para cancelar limpar a seleção
+  function handleCancelClearSelected() {
+    setAlertVisible(false);
+  }
+
+  function handleSearch(){
+    router.navigate("/recipes/")
+  }
 
 
     return (
@@ -50,12 +63,22 @@ export default function Index() {
                     />
                 ))}
             </ScrollView>
+            {selected.length > 0 && (
+                <Selected
+                    quantity={selected.length}
+                    onClear={handlerClearSelected}
+                    onSearch={handleSearch}
+                />
+            )}
 
-            <Selected
-                quantity={selected.length}
-                onClear={handlerClearSelected}
-                onSearch={() => { }}
+            <CustomAlert
+                visible={alertVisible}
+                title="Limpar"
+                message="Deseja limpar tudo?"
+                onCancel={handleCancelClearSelected}
+                onConfirm={handleConfirmClearSelected}
             />
+
         </View>
     )
 }

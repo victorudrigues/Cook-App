@@ -7,8 +7,7 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: theme.colors.black,
         padding: 24 ,
-        display: "flex",
-        alignItems: "center",
+       
         borderRadius: theme.borderRadius.lg,
         position: "absolute",
         bottom: 24,
