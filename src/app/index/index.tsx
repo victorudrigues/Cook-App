@@ -78,7 +78,6 @@ export default function Index() {
                 onCancel={handleCancelClearSelected}
                 onConfirm={handleConfirmClearSelected}
             />
-
         </View>
     )
 }
