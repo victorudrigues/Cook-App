@@ -1,9 +1,11 @@
-import { View, Text, ScrollView, Alert } from "react-native";
-import { Router, router } from "expo-router";
+import { View, Text, ScrollView } from "react-native";
+import { router } from "expo-router";
+
+import { services } from "@/services"
 
 import { styles } from "./styles"
 import { Selected } from "@/components/selected";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Ingredient } from "@/components/Ingredient";
 import CustomAlert from "@/components/Alert";
 
@@ -41,6 +43,13 @@ export default function Index() {
     router.navigate("/recipes/")
   }
 
+  
+  useEffect(() => {
+    var teste = services.ingredients.findAll().then(console.log)
+    console.log(teste)
+   
+  }, [])
+  
 
     return (
         <View style={styles.container}>
