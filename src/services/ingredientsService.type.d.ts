@@ -3,5 +3,5 @@
 type IngredientResponse = {
     id: string
     name: string
-    image: String
+    image: string
 }

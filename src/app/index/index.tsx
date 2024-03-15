@@ -13,6 +13,7 @@ export default function Index() {
 
     const [selected, setSelected] = useState<string[]>([]);
     const [alertVisible, setAlertVisible] = useState(false);
+    const [ingredients, setIngredients] = useState<IngredientResponse[]>([]);
 
     //Filtrando os objetos selecionados
     function handleToggleSelected(value: string) {
@@ -45,7 +46,7 @@ export default function Index() {
 
   
   useEffect(() => {
-    var teste = services.ingredients.findAll().then(console.log)
+    var teste = services.ingredients.findAll().then(setIngredients)
     console.log(teste)
    
   }, [])
@@ -62,13 +63,13 @@ export default function Index() {
             {/* //Lista */}
             <ScrollView contentContainerStyle={styles.ingredients} showsVerticalScrollIndicator={false}>
 
-                {Array.from({ length: 100 }).map((item, index) => (
+                {ingredients.map((item) => (
                     <Ingredient
-                        key={index}
-                        name="Tomate"
-                        image=""
-                        selected={selected.includes(String(index))}
-                        onPress={() => handleToggleSelected(String(index))}
+                        key={item.id}
+                        name={item.name}
+                        image={`${services.storage.imagePath}/${item.image}`}
+                        selected={selected.includes(item.id)}
+                        onPress={() => handleToggleSelected(item.id)}
                     />
                 ))}
             </ScrollView>

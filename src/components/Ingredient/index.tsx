@@ -12,10 +12,10 @@ export function Ingredient({name, image, selected=false, ...rest}: IngredientPro
         //Pressable é um componente que interage através do toque.
         <Pressable style={[styles.container, selected && styles.selected]} {...rest}>
             <Image 
-                source={require("@/assets/tomato (1).png")}
+                source={{ uri: image }}
                 style={styles.image}
             />
-            <Text style={styles.tittle}>Maçã</Text>
+            <Text style={styles.tittle}>{name}</Text>
         </Pressable>
     );
 }

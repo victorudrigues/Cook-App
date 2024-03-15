@@ -4,8 +4,8 @@ import { supabase } from "./supabase";
 export async function findAll(){
     debugger
     const { data } = await supabase.from("Ingredients").select().order("name")
-    .returns<{ingredients: IngredientResponse}[]>();
-    return data;
+    .returns<IngredientResponse[]>();
+    return data ?? [];
 
     //returns: está retornando um objeto de arrays[], que está sendo tipado no arquivo ingredientsService.type
 }
